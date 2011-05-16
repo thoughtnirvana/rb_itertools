@@ -151,7 +151,7 @@ module Itertools
     Fiber.new {
       iterables = iterables.map {|it| iter(it) }
       while true
-        args = iterables.map {|it| it.enum_for(:each).next }
+        args = iterables.map {|it| it.to_enum.next }
         Fiber.yield yield *args
       end
     }
@@ -162,7 +162,7 @@ module Itertools
     Fiber.new {
       iterables = iterables.map {|it| iter(it) }
       while iterables
-        Fiber.yield iterables.map {|it| it.enum_for(:each).next }
+        Fiber.yield iterables.map {|it| it.to_enum.next }
       end
     }
   end
@@ -217,7 +217,7 @@ module Itertools
     }
   end
 
-  # takewhile [1,4,6,4,1] {|x| x<5} --> 1 4
+  # takewhile [1,4,6,4,1] {|x| x<5 } --> 1 4
   def takewhile(iterable)
     Fiber.new {
       for el in iterable
