@@ -1,0 +1,3 @@
+Ruby port of Python `itertools`
+
+Ruby has many of these inbuilt but they aren't lazy.
