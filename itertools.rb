@@ -150,6 +150,11 @@ module Enumerable
       raise StopIteration
     }
   end
+
+  # [1,2,3].powerset --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)
+  def powerset(initial=0)
+    (initial..size).each {|i| yield icombination(i) }
+  end
 end
 
 # Monkey patching `Fiber`.
@@ -161,5 +166,21 @@ class Fiber
   include Enumerable 
   def each
     loop { yield self.resume }
+  end
+
+  # Consume n items.
+  def consume(n)
+    n.times do
+      if block_given?
+        yield self.resume
+      else
+        self.resume
+      end
+    end
+  end
+
+  def nth(n)
+    (n-1).times { self.resume }
+    yield self.resume
   end
 end
