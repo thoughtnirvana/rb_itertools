@@ -40,7 +40,7 @@ module Itertools
     }
   end
 
-  # combinations('ABCD', 2) --> AB AC AD BC BD CD
+  # icombinations('ABCD', 2) --> AB AC AD BC BD CD
   def icombination(iterable, r)
     Fiber.new {
       n = iterable.size
@@ -59,7 +59,7 @@ module Itertools
     }
   end
 
-  # combinations_with_replacement('ABC', 2) --> AA AB AC BB BC CC
+  # icombination_with_replacement('ABC', 2) --> AA AB AC BB BC CC
   def icombination_with_replacement(iterable, r)
     Fiber.new {
       n = iterable.size
@@ -166,7 +166,7 @@ module Itertools
     }
   end
 
-  # permutations('ABCD', 2) --> AB AC AD BA BC BD CA CB CD DA DB DC
+  # ipermutations('ABCD', 2) --> AB AC AD BA BC BD CA CB CD DA DB DC
   def ipermutations(iterable, r=nil)
     Fiber.new {
       n = iterable.size
