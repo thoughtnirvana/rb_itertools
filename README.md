@@ -9,7 +9,6 @@ Inspired by Python's [itertools][iter]. Ruby already has a pretty strong `Enumer
 
 With introduction of `Fiber` in Ruby 1.9, generators are very easy to implement. `Fiber` was introduced in Ruby 1.9 and therefore, all code in this library is 1.9 specific.
 
-***
 
 Fibers and generators
 ---------------------
@@ -68,10 +67,11 @@ will give you the same numbers everytime you run them.
 You should look up following resources if you are interested in learning more about generators and fibers.
 
 [Dave Thomas - fibers part 1][dave1]
+
 [Dave Thomas - fibers part 2][dave2]
+
 [Python generators tricks][pythongen]
 
-***
 
 Examples
 --------
@@ -108,12 +108,14 @@ One thing to note here is fibers preserve state - that means you can run into `F
 1. chain
 
     > [1,2,3].chain([4,5], [6,7,8]).each {|x| print x, "\t" }
+
     1       2       3       4       5       6       7       8        => nil 
 
 
 2. from_iterable
 
     > [[1,2,3], [4,5]].from_iterable.each {|x| print x, "\t" }
+
     1       2       3       4       5        => nil 
 
 
@@ -141,6 +143,7 @@ Combinations with repetitions.
 5. compress
 
     > [1,2,3,4].compress([1,0,1,0]).each {|c| print c, "\t" }
+
     1       3        => [1, 3] 
 
 
@@ -159,6 +162,7 @@ Combinations with repetitions.
 8. starmap
 
     > [[2,5], [3,2]].starmap{|x, y| x**y }.each {|c| print c, "\t" }
+
     32      9        => nil
 
 
@@ -173,7 +177,6 @@ Combinations with repetitions.
     [1, 2, 3][1, 2, 4][1, 3, 4][2, 3, 4][1, 2, 3, 4] => 3..4 
 
 
-***
 
 [iter]: http://docs.python.org/library/itertools.html
 [dave1]: http://pragdave.blogs.pragprog.com/pragdave/2007/12/pipelines-using.html
