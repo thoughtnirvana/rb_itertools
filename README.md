@@ -152,14 +152,14 @@ Combinations with repetitions.
 
 *  repeat
 
-    **[**1].repeat(3).each {|c| print c }
+    [1].repeat(3).each {|c| print c }
     [1][1][1] => nil 
 
 
 *  **starmap**
 
-    [[2,5], [3,2]].starmap{|x, y| x**y }.each {|c| print c, "\t" }
-    32      9        => nil
+    [[2,5], [3,2]].starmap{|x, y| x+y }.each {|c| print c, "\t" }
+    7      5        => nil
 
 
 *  **powerset** 
@@ -168,7 +168,6 @@ Combinations with repetitions.
     [][1][2][3][1, 2][1, 3][2, 3][1, 2, 3] => 0..3
 
 
-    # Generate powerset when the subset has 3 or more elements.
     > [1,2,3,4].powerset(3) {|p| p.each {|subset| print subset } }
     [1, 2, 3][1, 2, 4][1, 3, 4][2, 3, 4][1, 2, 3, 4] => 3..4 
 
