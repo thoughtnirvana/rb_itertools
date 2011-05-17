@@ -41,7 +41,8 @@ module Enumerable
     }
   end
 
-  # chain [1, 2, 3], [4, 5] --> 1 2 3 4 5
+  #[1,2,3].chain([4,5]).each {|x| print x, "\t" }
+  #1       2       3       4       5 => nil 
   def chain(*iterables)
     Fiber.new {
       iterables.unshift self
@@ -50,7 +51,8 @@ module Enumerable
     }
   end
 
-  # chain.from_iterable [[1, 2, 3], [4, 5]] --> 1 2 3 4 5
+  #[[1,2,3], [4,5]].from_iterable.each {|x| print x, "\t" }
+  #1       2       3       4       5        => nil 
   def from_iterable
     Fiber.new {
       self.each {|it| it.each {|el| Fiber.yield el } }
@@ -58,7 +60,8 @@ module Enumerable
     }
   end
 
-  # icombination 'ABCD', 2 --> AB AC AD BC BD CD
+  # [1,2,3].icombination(2).each {|c| print c, "\t" }
+  # [1, 2]  [1, 3]  [2, 3]   => nil
   def icombination(r)
     Fiber.new {
       n = self.size
@@ -77,7 +80,8 @@ module Enumerable
     }
   end
 
-  # icombination_r 'ABC', 2 --> AA AB AC BB BC CC
+  # [1,2,3].icombination_r(2).each {|c| print c, "\t" }
+  # [1, 1]  [1, 2]  [1, 3]  [2, 2]  [2, 3]  [3, 3]   => nil 
   def icombination_r(r)
     Fiber.new {
       n = self.size
@@ -95,13 +99,16 @@ module Enumerable
     }
   end
 
-  # compress 'ABCDEF', [1,0,1,0,1,1] --> A C E F
+  # > [1,2,3,4].compress([1,0,1,0]).each {|c| print c, "\t" }
+  # 1       3        => [1, 3] 
   def compress(selectors)
     self.zip(selectors).collect {|d, s| d unless s.zero? }.compact
   end
 
 
-  # ipermutation 'ABCD', 2 --> AB AC AD BA BC BD CA CB CD DA DB DC
+
+  # [1,2,3,4].ipermutation(2).each {|c| print c, "\t" }
+  # [1, 2]  [1, 3]  [1, 4]  [4, 3]  [4, 2]  [4, 3]  [3, 2]  [3, 4]  [3, 2]  [4, 2]  [4, 2]  [4, 3]   => nil
   def ipermutation(r=nil)
     Fiber.new {
       n = self.size
@@ -127,7 +134,8 @@ module Enumerable
     }
   end
 
-  # repeat 10, 3 --> 10 10 10
+  # [1].repeat(3).each {|c| print c }
+  # [1][1][1] => nil 
   def repeat(times=nil)
     Fiber.new {
       if times.nil?
@@ -141,7 +149,8 @@ module Enumerable
     }
   end
 
-  # starmap [[2, 5], [3, 2], [10, 3]] {|x, y| x**Y } --> 32 9 1000
+  # [[2,5], [3,2]].starmap{|x, y| x**y }.each {|c| print c, "\t" }
+  # 32      9        => nil
   def starmap
     Fiber.new {
       for args in self 
@@ -151,7 +160,8 @@ module Enumerable
     }
   end
 
-  # [1,2,3].powerset --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)
+  # [1,2,3,4].powerset(3) {|p| p.each {|subset| print subset } }
+  # [1, 2, 3][1, 2, 4][1, 3, 4][2, 3, 4][1, 2, 3, 4] => 3..4 
   def powerset(initial=0)
     (initial..size).each {|i| yield icombination(i) }
   end
