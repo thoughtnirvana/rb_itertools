@@ -9,6 +9,7 @@ Inspired by Python's [itertools][iter]. Ruby already has a pretty strong `Enumer
 
 With introduction of `Fiber` in Ruby 1.9, generators are very easy to implement. `Fiber` was introduced in Ruby 1.9 and therefore, all code in this library is 1.9 specific.
 
+***
 
 Fibers and generators
 ---------------------
@@ -69,6 +70,8 @@ You should look up following resources if you are interested in learning more ab
 [Dave Thomas - fibers part 1][dave1]
 [Dave Thomas - fibers part 2][dave2]
 [Python generators tricks][pythongen]
+
+***
 
 Examples
 --------
@@ -170,9 +173,11 @@ Combinations with repetitions.
     [1, 2, 3][1, 2, 4][1, 3, 4][2, 3, 4][1, 2, 3, 4] => 3..4 
 
 
-
+***
 
 [iter]: http://docs.python.org/library/itertools.html
 [dave1]: http://pragdave.blogs.pragprog.com/pragdave/2007/12/pipelines-using.html
 [dave2]: http://pragdave.blogs.pragprog.com/pragdave/2008/01/pipelines-using.html
 [pythongen]: http://www.dabeaz.com/generators/
+
+
