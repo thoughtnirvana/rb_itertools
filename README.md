@@ -105,21 +105,21 @@ One thing to note here is fibers preserve state - that means you can run into `F
     ...
 
 
-1. chain
+*  chain
 
     > [1,2,3].chain([4,5], [6,7,8]).each {|x| print x, "\t" }
 
     1       2       3       4       5       6       7       8        => nil 
 
 
-2. from_iterable
+*  from_iterable
 
     > [[1,2,3], [4,5]].from_iterable.each {|x| print x, "\t" }
 
     1       2       3       4       5        => nil 
 
 
-3. icombination
+*  icombination
 
 The ruby library already provides a combination function for arrays.
 
@@ -132,7 +132,7 @@ icombination does the same thing - it just implements it as generator using fibe
     [1, 2]  [1, 3]  [2, 3]   => nil
 
 
-4. icombination_r
+*  icombination_r
 
 Combinations with repetitions.
 
@@ -140,33 +140,33 @@ Combinations with repetitions.
     [1, 1]  [1, 2]  [1, 3]  [2, 2]  [2, 3]  [3, 3]   => nil 
 
 
-5. compress
+*  compress
 
     > [1,2,3,4].compress([1,0,1,0]).each {|c| print c, "\t" }
 
     1       3        => [1, 3] 
 
 
-6. ipermutation
+*  ipermutation
 
     > [1,2,3,4].ipermutation(2).each {|c| print c, "\t" }
     [1, 2]  [1, 3]  [1, 4]  [4, 3]  [4, 2]  [4, 3]  [3, 2]  [3, 4]  [3, 2]  [4, 2]  [4, 2]  [4, 3]   => nil
 
 
-7. repeat
+*  repeat
 
     > [1].repeat(3).each {|c| print c }
     [1][1][1] => nil 
 
 
-8. starmap
+*  starmap
 
     > [[2,5], [3,2]].starmap{|x, y| x**y }.each {|c| print c, "\t" }
 
     32      9        => nil
 
 
-9. powerset 
+*  powerset 
 
     > [1,2,3].powerset {|p| p.each {|subset| print subset } }
     [][1][2][3][1, 2][1, 3][2, 3][1, 2, 3] => 0..3
